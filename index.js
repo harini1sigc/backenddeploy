@@ -21,7 +21,7 @@ app.get("/", function (req, res) {
 app.post("/post", async function (req, res) {
   const postMethod = req.body;
 
-  const POSTMETHOD = await client.db("CRUD").collection("DATA").insertMany([postMethod]);
+  const POSTMETHOD = await client.db("CRUD").collection("D").insertMany([postMethod]);
   res.status(200).send(POSTMETHOD);
 });
 
@@ -29,7 +29,7 @@ app.post("/post", async function (req, res) {
 //---------------get method --------------------
 
 app.get("/get", async function (req, res) {
-  const GetMethod = await client.db("CRUD").collection("DATA").find({}).toArray();
+  const GetMethod = await client.db("CRUD").collection("D").find({}).toArray();
   res.status(200).send(GetMethod);
 });
 
@@ -38,7 +38,7 @@ app.get("/get", async function (req, res) {
 app.get("/get/:singleId", async function (req, res) {
   const { singleId } = req.params;
 
-  const SingleIdGetMethod = await client.db("CRUD").collection("DATA").findOne({ _id: new ObjectId(singleId) });
+  const SingleIdGetMethod = await client.db("CRUD").collection("D").findOne({ _id: new ObjectId(singleId) });
   res.status(200).send(SingleIdGetMethod);
 });
 
@@ -46,7 +46,7 @@ app.get("/get/:singleId", async function (req, res) {
 app.put("/update/:singlePut",  async function (req, res) {
   const { singlePut } = req.params;
   const UpdateMethod = req.body;
-  const singleId = await client.db("CRUD").collection("DATA").updateOne({ _id: new ObjectId(singlePut) }, { $set: UpdateMethod });
+  const singleId = await client.db("CRUD").collection("D").updateOne({ _id: new ObjectId(singlePut) }, { $set: UpdateMethod });
 
   res.status(200).send(singleId);
 });
@@ -56,7 +56,7 @@ app.put("/update/:singlePut",  async function (req, res) {
 app.delete("/delete/:deleteMethod", async function (req, res) {
   const { deleteMethod } = req.params;
 
-  const DELETEMETHOD = await client.db("CRUD").collection("DATA").deleteOne({ _id: new ObjectId(deleteMethod) });
+  const DELETEMETHOD = await client.db("CRUD").collection("D").deleteOne({ _id: new ObjectId(deleteMethod) });
 
   res.status(200).send(DELETEMETHOD);
 });
